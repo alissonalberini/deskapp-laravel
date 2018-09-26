@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/form-basic.php', function () {
+Route::get('/form-basic', function () {
     return view('form-basic');
 });
 
