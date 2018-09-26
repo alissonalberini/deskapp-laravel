@@ -17,7 +17,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('dashboard', 'HomeController@index')->name('dashboard');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/form-basic.php', function () {
+    return view('form-basic');
+});
 
-Auth::routes();
+
+//Auth::routes();
