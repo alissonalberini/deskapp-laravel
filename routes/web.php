@@ -12,6 +12,7 @@
 */
 //Route::auth();
 
+//Página pública:
 
 Route::get('/', function () {
     return view('home');
@@ -21,5 +22,10 @@ Route::get('/form-basic', function () {
     return view('form-basic');
 });
 
+//Paginas authenticadas:
+Auth::routes();
 
-//Auth::routes();
+Route::get('/home', 'HomeController@index');
+Route::get('/logout', 'Auth\LoginController@logout');
+
+

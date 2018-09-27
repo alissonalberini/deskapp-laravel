@@ -16,16 +16,21 @@
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon"><i class="fa fa-user-o"></i></span>
-                    <span class="user-name">Usuário logado</span>
+                    @auth
+                    <span class="user-name"> {{ Auth::user()->name }} </span>
+                    @endauth
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="/perfil"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a>
-                    <a class="dropdown-item" href="/config"><i class="fa fa-cog" aria-hidden="true"></i> Setting</a>
-                    <a class="dropdown-item" href="/help.php"><i class="fa fa-question" aria-hidden="true"></i> Help</a>
-                    <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
+                    @auth
+                    <a class="dropdown-item" href="/user/editar/{{ Auth::user()->id }}"><i class="fa fa-user-md" aria-hidden="true"></i> {{ __('Profile') }}</a>
+                    @endauth
+                    <a class="dropdown-item" href="/config"><i class="fa fa-cog" aria-hidden="true"></i> {{ __('Settings') }}</a>
+                    <a class="dropdown-item" href="/help"><i class="fa fa-question" aria-hidden="true"></i> {{ __('Help') }}</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ __('Sign Out') }}</a>
                 </div>
             </div>
         </div>
+        
         <div class="user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -35,34 +40,19 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="notification-list mx-h-350 customscroll">
                         <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('images/img.jpg') }}" alt="">
-                                    <h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('images/img.jpg') }}" alt="">
-                                    <h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('images/img.jpg') }}" alt="">
-                                    <h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('images/img.jpg') }}" alt="">
-                                    <h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                </a>
-                            </li>
+                            @isset($notifications)
+                                @forelse ($notifications as $notification)
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('images/img.jpg') }}" alt="">
+                                            <h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <p>No notifications</p>
+                                @endforelse
+                            @endisset
                         </ul>
                     </div>
                 </div>
