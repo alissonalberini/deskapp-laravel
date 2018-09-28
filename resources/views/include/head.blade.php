@@ -14,4 +14,8 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 <!-- CSS -->
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link href="{{ asset('plugins/sweetalert/sweetalert2.css') }}" rel="stylesheet" type="text/css"/>;
+<!-- CSS INCLUDES - START -->
+    @yield('css')
+<!-- CSS INCLUDES - END -->
 

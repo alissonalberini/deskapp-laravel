@@ -22,10 +22,18 @@ Route::get('/form-basic', function () {
     return view('form-basic');
 });
 
+Route::get('/basic-table', function () {
+    return view('basic-table');
+});
+
 //Paginas authenticadas:
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
 
+
+Route::get('/users2', 'UserController@index2');
+
+Route::resource('users', 'UserController');
 
