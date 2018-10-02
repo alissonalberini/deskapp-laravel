@@ -13,18 +13,16 @@
     <form method="post" action="{{ route('users.update', $edit->id) }}">
         @method('PUT')
         @csrf
-        <div class="form-group row">
+        <div class="form-group {{ $errors->first('name') ? ' has-danger' : '' }} row">
             <label class="col-sm-12 col-md-2 col-form-label">Name</label>
             <div class="col-sm-12 col-md-10">
                 <input id="name" name="name" type="text" required autofocus
-                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
+                       class="form-control form-control{{ $errors->first('name') ? '-danger' : '' }}" 
                        placeholder="Username" value="{{ !isset($edit) ? '' : $edit->name }}" >
+                @if ($errors->first('name') )
+                <div class="form-control-feedback">{{ $errors->first('name') }}</div>
+                @endif
             </div>
-            @if ($errors->has('name'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
-            @endif
         </div>
         
         <div class="form-group {{ $errors->first('email') ? ' has-danger' : '' }} row">
@@ -37,24 +35,18 @@
                 <div class="form-control-feedback">{{ $errors->first('email') }}</div>
                 @endif
             </div>
-            
-            @if ($errors->has('email'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
         </div>
         
-        <div class="form-group row">
+        <div class="form-group {{ $errors->first('password') ? ' has-danger' : '' }} row">
             <label class="col-sm-12 col-md-2 col-form-label">Password</label>
             <div class="col-sm-12 col-md-10">
-                <input id="password" name="password" type="password" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="******" value="" required autofocus>
+                <input id="password" name="password" type="password" 
+                       class="form-control form-control{{ $errors->first('password') ? '-danger' : '' }}" 
+                       placeholder="******" value="" required autofocus>
+                @if ($errors->first('password') )
+                <div class="form-control-feedback">{{ $errors->first('password') }}</div>
+                @endif
             </div>
-            @if ($errors->has('password'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('password') }}</strong>
-            </span>
-            @endif
         </div>
         
         <div class="btn-list">

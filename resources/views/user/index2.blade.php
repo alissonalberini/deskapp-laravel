@@ -16,6 +16,9 @@
         <div class="pull-left">
             <h5 class="text-blue">Data Table with Export Buttons</h5>
         </div>
+        <div class="pull-right">
+            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm scroll-click" role="button"><i class="fa fa-plus"></i> {{ __('New User') }}</a>
+        </div>
     </div>
     <div class="row">
         <table class="data-table stripe hover nowrap">

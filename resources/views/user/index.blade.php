@@ -10,7 +10,7 @@
             <p></p>
         </div>
         <div class="pull-right">
-            <a href="#" class="btn btn-primary btn-sm scroll-click" role="button"><i class="fa fa-plus"></i> {{ __('New User') }}</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm scroll-click" role="button"><i class="fa fa-plus"></i> {{ __('New User') }}</a>
         </div>
     </div>
     <div class="table-responsive">

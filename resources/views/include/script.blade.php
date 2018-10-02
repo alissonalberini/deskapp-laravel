@@ -12,6 +12,16 @@
     </script>
 @endif
 
+@if(session('message'))
+    <script>
+        swal(
+            '{{session('message')['title']}}',
+            '{{session('message')['message']}}',
+            '{{session('message')['type']}}'
+        );
+    </script>
+@endif
+
 <!--@if ($errors->any())
     <script>
         swal({

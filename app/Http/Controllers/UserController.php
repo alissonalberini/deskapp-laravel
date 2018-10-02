@@ -58,15 +58,21 @@ class UserController extends Controller
             User::create($request->all());
            
             $message = collect([
-                'title' => 'titulo', 
-                'message' => 'Oioioi mensagem', 
+                'title' => 'Bom trabalho', 
+                'message' => 'Registro criado com sucesso!', 
                 'type' => 'success'
             ]);
+            session()->flash('message',$message);
            
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e], 402);
         }
-        return redirect()->route('users.index' ,compact('message'));
+        catch (Exception $ex) {
+            abort(500);
+        }
+        catch (\Exception $ex) {
+            abort(500);
+        }
+        
+        return redirect()->route('users.index');
     }
 
     /**
@@ -105,16 +111,22 @@ class UserController extends Controller
         $this->validator($request->all())->validate();
         
         try{
-            User::findOrFail($id)->update($request->validated());
-        } catch (Exception $ex) {
-
+            User::findOrFail($id)->update($request->all());
+            
+            $message = collect([
+                'title' => 'Bom trabalho', 
+                'message' => 'Registro atualizado com sucesso!', 
+                'type' => 'success'
+            ]);
+            session()->flash('message',$message);
+            
         }
-        $message = collect([
-            'title' => 'Bom trabalho', 
-            'message' => 'Registro atualizado com sucesso!', 
-            'type' => 'success'
-        ]);
-        session()->flash($message);
+        catch (Exception $ex) {
+            abort(500);
+        }
+        catch (\Exception $ex) {
+            abort(500);
+        }
         
         return redirect()->route('users.index');
     }
@@ -135,7 +147,7 @@ class UserController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
         
     }
