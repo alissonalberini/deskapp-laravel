@@ -36,4 +36,5 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/users2', 'UserController@index2');
 
 Route::resource('users', 'UserController');
+//Route::post('/users/{user}', 'UserController@update')->name('users.update');
 

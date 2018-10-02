@@ -17,40 +17,25 @@
             <label class="col-sm-12 col-md-2 col-form-label">Name</label>
             <div class="col-sm-12 col-md-10">
                 <input id="name" name="name" type="text" required autofocus
-                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
+                       class="form-control" disabled=""
                        placeholder="Username" value="{{ !isset($edit) ? '' : $edit->name }}" >
             </div>
-            @if ($errors->has('name'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
-            @endif
         </div>
         
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Email</label>
             <div class="col-sm-12 col-md-10">
                 <input id="email" name="email" type="text" required autofocus
-                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
+                       class="form-control" disabled=""
                        placeholder="email" value="{{ !isset($edit) ? '' : $edit->email }}">
             </div>
-            @if ($errors->has('email'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('email') }}</strong>
-            </span>
-            @endif
         </div>
         
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Password</label>
             <div class="col-sm-12 col-md-10">
-                <input id="password" name="password" type="password" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="******" value="" required autofocus>
+                <input id="password" name="password" type="password" class="form-control" placeholder="******" value="" required autofocus disabled="">
             </div>
-            @if ($errors->has('password'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('password') }}</strong>
-            </span>
-            @endif
         </div>
         
         <div class="btn-list">

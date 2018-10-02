@@ -12,6 +12,23 @@
     </script>
 @endif
 
+@if ($errors->any())
+
+    @foreach ($errors->all() as $error)        
+        
+    @endforeach
+    
+    <script>
+        swal({
+            title: 'Erro',
+            text: '{{ $error }}',
+            type: 'error',
+            showConfirmButton: true,
+        });
+        </script> 
+    
+@endif
+
 <!-- JS INCLUDES - START -->
 @yield('scripts')
 <!-- JS INCLUDES - END -->

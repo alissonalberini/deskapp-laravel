@@ -9,11 +9,20 @@
             <p class="mb-30 font-14">All bootstrap element classies</p>
         </div>
     </div>
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         
-    <form method="POST" action="{{ route('users.update', $edit->id) }}">
+    <form method="post" action="{{ route('users.update', $edit->id) }}">
         @method('PUT')
         @csrf
-       
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Name</label>
             <div class="col-sm-12 col-md-10">
@@ -28,13 +37,17 @@
             @endif
         </div>
         
-        <div class="form-group row">
+        <div class="form-group {{ $errors->first('email') ? ' has-danger' : '' }} row">
             <label class="col-sm-12 col-md-2 col-form-label">Email</label>
             <div class="col-sm-12 col-md-10">
                 <input id="email" name="email" type="text" required autofocus
-                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
+                       class="form-control form-control{{ $errors->first('email') ? '-danger' : '' }}" 
                        placeholder="email" value="{{ !isset($edit) ? '' : $edit->email }}">
+                @if ($errors->first('email') )
+                <div class="form-control-feedback">{{ $errors->first('email') }}</div>
+                @endif
             </div>
+            
             @if ($errors->has('email'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('email') }}</strong>

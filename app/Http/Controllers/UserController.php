@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Http\Requests\UserRequest;
+use Validator;
 
 class UserController extends Controller
 {
@@ -49,13 +49,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        dd("oioio");
         try {
-           User::create($request->all());
+            
+            $this->validator($request->all())->validate();
+            
+            User::create($request->all());
            
-           $message = collect([
+            $message = collect([
                 'title' => 'titulo', 
                 'message' => 'Oioioi mensagem', 
                 'type' => 'success'
@@ -98,9 +100,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        dd($request);
+        $this->validator($request->all())->validate();
+        
         try{
             User::findOrFail($id)->update($request->validated());
         } catch (Exception $ex) {
@@ -125,5 +128,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        
     }
 }
