@@ -9,16 +9,6 @@
             <p class="mb-30 font-14">All bootstrap element classies</p>
         </div>
     </div>
-    
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
         
     <form method="post" action="{{ route('users.update', $edit->id) }}">
         @method('PUT')

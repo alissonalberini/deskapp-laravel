@@ -12,22 +12,16 @@
     </script>
 @endif
 
-@if ($errors->any())
-
-    @foreach ($errors->all() as $error)        
-        
-    @endforeach
-    
+<!--@if ($errors->any())
     <script>
         swal({
-            title: 'Erro',
-            text: '{{ $error }}',
+            title: 'Existem erros na validação do formulário',
+            text: 'Verifique os campos destacados, com os valores digitados.',
             type: 'error',
             showConfirmButton: true,
         });
-        </script> 
-    
-@endif
+    </script>
+@endif-->
 
 <!-- JS INCLUDES - START -->
 @yield('scripts')
