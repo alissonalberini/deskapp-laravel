@@ -53,8 +53,8 @@
         </div>
         
         <div class="btn-list">
-            <button type="submit" class="btn btn-outline-primary">{{ __('Create') }}</button>
-            <button type="reset" class="btn btn-outline-danger">{{ __('Cancel') }}</button>
+            <button type="submit" id="submit" class="btn btn-outline-primary">{{ __('Create') }}</button>
+            <button type="reset" id="reset"  class="btn btn-outline-danger">{{ __('Cancel') }}</button>
         </div>
         
     </form>

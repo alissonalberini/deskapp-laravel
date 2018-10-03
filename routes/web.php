@@ -18,23 +18,16 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/form-basic', function () {
-    return view('form-basic');
-});
-
-Route::get('/basic-table', function () {
-    return view('basic-table');
-});
-
 //Paginas authenticadas:
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
 
-
-Route::get('/users2', 'UserController@index2');
+Route::get('/users2', 'UserController@index2')->name('users.index2');
+Route::get('/users3', 'UserController@index3')->name('users.index3');
 
 Route::resource('users', 'UserController');
-//Route::post('/users/{user}', 'UserController@update')->name('users.update');
+
+Route::resource('calendar', 'CalendarController');
 

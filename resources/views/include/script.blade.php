@@ -2,6 +2,12 @@
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('plugins/sweetalert/sweetalert2.js') }}" type="text/javascript"></script>
 
+<script>
+$("#reset").click(function(){
+    history.go(-1);
+});
+</script>
+
 @if(isset($message))
     <script>
         swal(

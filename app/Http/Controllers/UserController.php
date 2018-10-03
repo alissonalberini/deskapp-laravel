@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Validator;
 
+
 class UserController extends Controller
 {
     /**
@@ -30,7 +31,7 @@ class UserController extends Controller
     public function index3()
     {
         $records = User::all();
-        return view('user.index2')->with('records',$records);
+        return view('user.index3')->with('records',$records);
     }
 
     /**
@@ -56,13 +57,8 @@ class UserController extends Controller
             $this->validator($request->all())->validate();
             
             User::create($request->all());
-           
-            $message = collect([
-                'title' => 'Bom trabalho', 
-                'message' => 'Registro criado com sucesso!', 
-                'type' => 'success'
-            ]);
-            session()->flash('message',$message);
+ 
+            set_message_sucess('Registro criado com sucesso!');
            
         }
         catch (Exception $ex) {
@@ -113,12 +109,7 @@ class UserController extends Controller
         try{
             User::findOrFail($id)->update($request->all());
             
-            $message = collect([
-                'title' => 'Bom trabalho', 
-                'message' => 'Registro atualizado com sucesso!', 
-                'type' => 'success'
-            ]);
-            session()->flash('message',$message);
+            set_message_sucess('Registro atualizado com sucesso!');
             
         }
         catch (Exception $ex) {
@@ -139,7 +130,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            User::findOrFail($id)->delete();
+            
+            set_message_sucess('Registro removido com sucesso!');
+            
+        } catch (Exception $ex) {
+            abort(500);
+        }
+        return redirect()->route('users.index');
+        
     }
     
     protected function validator(array $data)

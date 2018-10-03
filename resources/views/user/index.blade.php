@@ -6,7 +6,7 @@
 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
     <div class="clearfix mb-20">
         <div class="pull-left">
-            <h4 class="text-blue">Responsive table</h4>
+            <h4 class="text-blue">Listagem padrão laravel</h4>
             <p></p>
         </div>
         <div class="pull-right">
@@ -37,7 +37,11 @@
                                 <div class="dropdown-menu dropdown-menu-left">
                                     <a class="dropdown-item" href="{{ route('users.show', $record->id ) }}"><i class="fa fa-eye"></i> View</a>
                                     <a class="dropdown-item" href="{{ route('users.edit', $record->id ) }}"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a class="dropdown-item" href="{{ route('users.show', $record->id ) }}"><i class="fa fa-trash"></i> Delete</a>
+                                    <form method="POST" action="{{ route('users.destroy', $record->id ) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="dropdown-item" type="submit" id="delete"><i class="fa fa-trash"></i> Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </td>

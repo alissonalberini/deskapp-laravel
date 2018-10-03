@@ -1,8 +1,28 @@
 <?php
 
-if (!function_exists('set_message_session_flash')){
+if (!function_exists('set_message_sucess')){
     
-    function set_message_session_flash($message) {
+    function set_message_sucess($text = 'Ação realizada com sucesso!') {
+        $message = collect([
+            'title' => 'Bom trabalho!!', 
+            'message' => $text, 
+            'type' => 'success'
+        ]);
+        session()->flash('message',$message);
+        return;
+    }
+}
+
+if (!function_exists('set_message_error')){
+    
+    function set_message_error($text = 'Ação não realizada!') {
+        
+        $message = collect([
+            'title' => 'Ops!', 
+            'message' => $text, 
+            'type' => 'error'
+        ]);
+        session()->flash('message',$message);
         return;
     }
 }

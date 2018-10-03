@@ -14,7 +14,7 @@
 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
     <div class="clearfix mb-20">
         <div class="pull-left">
-            <h5 class="text-blue">Data Table with Export Buttons</h5>
+            <h5 class="text-blue">listagem com Data Tables</h5>
         </div>
         <div class="pull-right">
             <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm scroll-click" role="button"><i class="fa fa-plus"></i> {{ __('New User') }}</a>
@@ -24,42 +24,46 @@
         <table class="data-table stripe hover nowrap">
             <thead>
                 <tr>
+                    <th class="table-plus datatable-nosort">{{ __('Actions') }}</th>
                     <th class="table-plus datatable-nosort">{{ __('ID') }}</th>
                     <th scope="col">{{ __('Name') }}</th>
                     <th scope="col">{{ __('Email') }}</th>
-                    <th scope="col">{{ __('Updated_at') }}</th>
+                    <th scope="col">{{ __('Updated at') }}</th>
                     <th scope="col">{{ __('Situation') }}</th>
-                    <th scope="col">{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @isset($records)
-                    @forelse ($records as $record)
-                    <tr>
-                       <td>
-                            <div class="dropdown">
-                                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <i class="fa fa-ellipsis-h"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-left">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
-                                </div>
+                @forelse ($records as $record)
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-left">
+                                <a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+                                <form method="POST" action="{{ route('users.destroy', $record->id ) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="dropdown-item" type="submit" id="delete"><i class="fa fa-trash"></i> Delete</button>
+                                </form>
                             </div>
-                        </td>
-                       <th class="table-plus">{{ $record->id }}</th>
-                       <td>{{ $record->name }}</td>
-                       <td>{{ $record->email }}</td>
-                       <td>{{ $record->updated_at }}</td>
-                       <td>Primary</span></td>
-                    </tr>
-                    @empty
-                        <tr>
-                            <p>No Record</p>
-                        </tr>
-                    @endforelse
-                @endisset 
+                        </div>
+                    </td>
+                    <th class="table-plus">{{ $record->id }}</th>
+                    <td>{{ $record->name }}</td>
+                    <td>{{ $record->email }}</td>
+                    <td>{{ $record->updated_at }}</td>
+                    <td><span class="badge badge-primary">Primary</span></td>
+                </tr>
+                @empty
+                <tr>
+            <p>No Record</p>
+            </tr>
+            @endforelse
+            @endisset 
             </tbody>
         </table>
     </div>
@@ -93,7 +97,7 @@ $('document').ready(function () {
                 targets: "datatable-nosort",
                 orderable: false,
             }],
-        "lengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
         "language": {
             "info": "_START_-_END_ of _TOTAL_ entries",
             searchPlaceholder: "Search"
@@ -107,7 +111,7 @@ $('document').ready(function () {
                 targets: "datatable-nosort",
                 orderable: false,
             }],
-        "lengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
         "language": {
             "info": "_START_-_END_ of _TOTAL_ entries",
             searchPlaceholder: "Search"

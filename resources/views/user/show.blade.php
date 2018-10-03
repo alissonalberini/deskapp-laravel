@@ -39,7 +39,7 @@
         </div>
         
         <div class="btn-list">
-            <button type="reset" class="btn btn-outline-danger">{{ __('Cancel') }}</button>
+            <button type="reset" id="reset" class="btn btn-outline-danger">{{ __('Cancel') }}</button>
         </div>
         
     </form>
