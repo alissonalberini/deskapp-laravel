@@ -31,18 +31,20 @@
   "Max size": "Tamanho Max",
   "Hours": "Horas",
   "Title": "Titulo",
+  "Situation": "Situação",
     
   "ID": "ID",
   "Action": "Ação",
+  "Actions": "Ações",
   "Edit": "Editar",
   "Delete": "Apagar",
   "Update": "Atualizar",
   "Created at": "Criado em",
   "Updated at": "Atualizado em",
   "Deleted at": "Removido em",
-  "created_at at": "criado em",
-  "updated_at at": "atualizado em",
-  "deleted_at at": "removido em",
+  "created_at": "criado em",
+  "updated_at": "atualizado em",
+  "deleted_at": "removido em",
   "Open": "Abrir",
   "Close": "Fechado",
   "Closed": "Fechadas",
@@ -68,12 +70,6 @@
   "More info": "Mais informações",
     
   "Profile": "Perfil",
-  "Users": "Usuários",
-  "All Users": "Todos os Usuários",
-  "New User": "Novo Usuário",
-  "Create user": "Criar usuario",
-  "Update user": "Atualizar usuário",
-  "Edit user": "Editar usuário",
   
   "Sign In": "Entrar",
   "Sign Out": "Sair",
@@ -90,22 +86,22 @@
   "Enter your email address to reset your password": "Digite seu endereço de e-mail para redefinir sua senha",
   "Enter your new password, confirm and submit": "Digite sua nova senha, confirme e envie",
 
+  "User": "Usuário",
+  "Users": "Usuários",
+  "All Users": "Todos os Usuários",
+  "New User": "Novo Usuário",
+  "Create User": "Criar usuario",
+  "Edit User": "Editar usuário",
+  "Update User": "Atualizar usuário",
+  "Delete User": "Remover usuário",
+    
   "Client": "Cliente",
   "Clients": "Clientes",
   "All Clients": "Todos os Clientes",
   "New Client": "Novo Cliente",
-  "Edit Client": "Editar Cliente",
-  "Create New Client": "Criar Novo Cliente",
   "Create Client": "Criar Cliente",
-  "Update client": "Atualizar Cliente",
-  
- 
-  "Imobiles": "Imóveis",
-  "All Imobiles": "Todos os Imóveis",
-  "New Imobile": "Novo Imóvel",
-  "Create New Imobile": "Criar Novo Imóvel",
-  "Create Imobile": "Criar Imóvel",
-  "Edit Imobile": "Editar Imóvel",
-  "Update Imobile": "Atualizar Imóvel"
+  "Edit Client": "Editar Cliente",
+  "Update Client": "Atualizar Cliente",
+  "Delete Client": "Remover Cliente"
     
 }
