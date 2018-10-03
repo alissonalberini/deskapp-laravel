@@ -1,5 +1,6 @@
 <!-- Basic Page Info -->
 <meta charset="utf-8">
+<meta http-equiv="Content-Language" content="pt-br">
 
 <title>Laravel - DeskApp Dashboard</title>
 
