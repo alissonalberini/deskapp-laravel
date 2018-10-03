@@ -15,10 +15,8 @@
         <div class="user-info-dropdown">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                    <span class="user-icon"><i class="fa fa-user-o"></i></span>
-                    @auth
-                    <span class="user-name"> {{ Auth::user()->name }} </span>
-                    @endauth
+                    <span class="user-icon"><i class="fa fa-user-o" style="padding-top: 5px;"></i></span>
+                    <span class="user-name">@auth {{ Auth::user()->name }} @endauth</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     @auth
