@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Illuminate\Validation\Rule;
 
 
 class UserController extends Controller
@@ -52,12 +53,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validator($request->all())->validate();
         try {
             
-            $this->validator($request->all())->validate();
-            
-            User::create($request->all());
- 
+            User::create($request->all());            
             set_message_sucess('Registro criado com sucesso!');
            
         }
@@ -105,10 +104,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validator($request->all())->validate();
-        
         try{
-            User::findOrFail($id)->update($request->all());
             
+            User::findOrFail($id)->update($request->all());
             set_message_sucess('Registro atualizado com sucesso!');
             
         }
@@ -131,8 +129,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
-            User::findOrFail($id)->delete();
             
+            User::findOrFail($id)->delete();
             set_message_sucess('Registro removido com sucesso!');
             
         } catch (Exception $ex) {
@@ -144,11 +142,19 @@ class UserController extends Controller
     
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $rules = [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-        ]);
+            'email' => 'required|string|email|max:255|unique:users',
+            
+        ];
+        
+        if(isset($data['id'])){
+            $rules['email'] = 'required|string|email|max:255';
+            $rules[] .= Rule::unique('users')->ignore($data['id']);
+        }
+        
+        return Validator::make($data, $rules);
         
     }
 }

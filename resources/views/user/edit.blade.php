@@ -13,6 +13,8 @@
     <form method="post" action="{{ route('users.update', $edit->id) }}">
         @method('PUT')
         @csrf
+        <input type="hidden" name="id" value="{{ $edit->id }}" />
+        
         <div class="form-group {{ $errors->first('name') ? ' has-danger' : '' }} row">
             <label class="col-sm-12 col-md-2 col-form-label">Name</label>
             <div class="col-sm-12 col-md-10">
